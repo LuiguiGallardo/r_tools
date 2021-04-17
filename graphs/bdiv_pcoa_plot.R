@@ -1,4 +1,4 @@
-#!/usr/bin/env R
+#!/usr/bin/env Rscript
 ## Purpose of script: beta diversity pcoa plot
 ## Date created: 13.07.2020
 ## Author: luigui gallardo-becerra (bfllg77@gmail.com)
@@ -28,10 +28,10 @@ option_list = list(
         default="PC2",
         type="character",
         help="Y axis label."),
-    make_option(c("-t", "--tittle"),
+    make_option(c("-t", "--title"),
         default="PC1 vs PC2",
         type="character",
-        help="Tittle of graph."),
+        help="Title of graph."),
     make_option(c("-s", "--subtitle"),
         default="Subtitle",
         type="character",
@@ -73,7 +73,7 @@ geom_point(aes(col=group,
     size = 3) +
 labs(x=opt$xlabel, 
     y=opt$ylabel, 
-    title=opt$tittle,
+    title=opt$title,
     subtitle = opt$subtitle) +
 theme(plot.title = element_text(face = "bold",
     hjust = 0.5,
