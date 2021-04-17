@@ -1,4 +1,4 @@
-#!/usr/bin/env Rscript
+#!/usr/bin/env R
 ## Purpose of script: beta diversity pcoa plot
 ## Date created: 13.07.2020
 ## Author: luigui gallardo-becerra (bfllg77@gmail.com)
