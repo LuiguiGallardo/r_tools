@@ -5,11 +5,14 @@
 usage () {
     cat <<help
 Usage:
-$0 {-i/--blast_input_fp BLAST_INPUT_FP -o/--output_prefix} [options]
+$0 {-i/--blast_input_fp BLAST_INPUT_FP -o/--output_prefix OUTPUT_PREFIX -g/--genome_info LENGTH_PER_GENE} [options]
 
 Options:
--i, --blast_input_fp Input file obtained from blast in tabular format.
--o, --output_prefix  Prefix for the output files.
+-i,	--blast_input_fp	Input file obtained from blast in tabular format.
+-o,	--output_prefix	Prefix for the output files.
+-g,	--genome_info	Genome information with gene name and length.
+-e,	--evalue	E-value cutoff; (default: 0.001).
+-c, 	--minimum_coverage	Coverage cutoff; (default; 0.5 = 50%)
 
 [] indicates optional input (order unimportant)
 {} indicates required input (order unimportant)
@@ -17,7 +20,7 @@ help
 }
 
 # Print the usage and help if no parameter is given
-if [ $# == 0 ] ; then
+if [$# == 0] ; then
     usage
     exit
 fi
