@@ -11,25 +11,24 @@ Options:
 -i, --fasta_input_fp    Input fasta.
 -o, --output_fp Output filename.
 
-[] indicates optional input (order unimportant)
+{} indicates required input (order unimportant)
 help
 }
 
 # Print the usage and help if no parameter is given
-if [$# == 0] ; then
+if [ $# -eq 0 ]; then
+    echo "No arguments provided"
     usage
-    exit
+    exit 1
 fi
 
 # Arguments input:
-while getopts h:i:o: opts
+while getopts i:o:h opts
 do
     case "$opts" in
         i) input=$OPTARG;;
         o) output=$OPTARG;;
         h) usage
-        exit 0;;
-        *) usage
         exit 1;;
     esac
 done

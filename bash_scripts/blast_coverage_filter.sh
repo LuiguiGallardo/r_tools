@@ -20,17 +20,19 @@ help
 }
 
 # Print the usage and help if no parameter is given
-if [$# == 0] ; then
+if [ $# -eq 0 ]; then
+    echo "No arguments provided"
     usage
-    exit
+    exit 1
 fi
+
 
 # Arguments input:
 # Defaults:
 evalue=0.001
 minimum_coverage=0.50
 
-while getopts h:i:o:e:g:c: opts
+while getopts i:o:e:g:c:h opts
 do
     case "$opts" in
         i) input=$OPTARG;;
@@ -39,8 +41,6 @@ do
         g) genome_info=$OPTARG;;
         c) minimum_coverage=$OPTARG;;
         h) usage
-        exit 0;;
-        *) usage
         exit 1;;
     esac
 done
