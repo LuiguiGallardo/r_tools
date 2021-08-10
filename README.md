@@ -1,2 +1,2 @@
-# r_tools
-Functional scripts in R.
+# Tools
+Functional scripts.
