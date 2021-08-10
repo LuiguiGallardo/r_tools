@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
-## Purpose of script: beta diversity pcoa plot
-## Date created: 13.07.2020
-## Author: luigui gallardo-becerra (bfllg77@gmail.com)
+##Purpose of script: beta diversity pcoa plot
+##Date created: 13.04.2021
+##Author: luigui gallardo-becerra (bfllg77@gmail.com)
 
 #Installation of packages
 #install.packages('optparse')
@@ -44,7 +44,6 @@ opt = parse_args(opt_parser)
 #Data input
 data <- read.table(opt$input, sep='\t')
 group = data$V2
-print(opt$groups)
 
 #Definition of colors
 num_colors = length(unique(group))
@@ -65,7 +64,7 @@ if (num_shapes == 2) {
     shapes <- 16
 }
 
-# Creation of the graph
+#Creation of the graph
 theme_set(theme_bw())
 graph <- ggplot(data, aes(V3, V4)) +
 geom_point(aes(col=group,
@@ -103,4 +102,3 @@ jpeg(file = paste(opt$output,".jpg", sep = ""))
     print(graph)
 dev.off()
 }
-
