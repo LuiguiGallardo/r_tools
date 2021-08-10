@@ -50,13 +50,14 @@ echo "Beginning of the script!"
 # Gene length calculation
 gene_length() {
     cat $input | 
-    awk '/^>/ {if (seqlen){print seqlen};\
-        print; seqlen=0; next;}\
+    awk '/^>/ {if (seqlen){print seqlen};
+        print; seqlen=0; next;}
         {seqlen += length($0)} 
         END{print seqlen}' | # Print last length
-    tr "\n" "\t" | # Convert \n to tabs
-    sed 's/>//g' # Remove > at the beginning of the lines
+    sed 'N;s/\n/\t/' | # Convert \n to \t in the odds rows
+    sed 's/>//g' > $output # Remove > at the beginning of the lines
 }
+gene_length
 
 # The end!
 echo "End of the script!"
