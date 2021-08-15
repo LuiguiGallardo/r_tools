@@ -1,8 +1,11 @@
 #!/bin/bash
-# Created 10.08.2021 by Luigui Gallardo-Becerra (bfllg77@gmail.com)
+# Title: blast_coverage_filter
+# Purpose: Calculate and filter a feature from a blast output
+# Author: Luigui Gallardo-Becerra (bfllg77@gmail.com)
+# Date: 10.08.2021
 
 # Usage and explanation of parameters:
-usage () {
+usage(){
     cat <<help
 Usage:
 $0 {-i/--fasta_input_fp FASTA_INPUT_FP -o/--output_fp OUTPUT_FP}
