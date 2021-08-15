@@ -8,11 +8,11 @@
 usage(){
     cat <<help
 Usage:
-$0 {-i/--fasta_input_fp FASTA_INPUT_FP -o/--output_fp OUTPUT_FP}
+$0 {-i/--fasta_input FASTA_INPUT_FP -o/--output OUTPUT_FP}
 
 Options:
--i, --fasta_input_fp    Input fasta.
--o, --output_fp Output filename.
+-i, --fasta_input    Input fasta.
+-o, --output Output filename.
 
 {} indicates required input (order unimportant)
 help
@@ -29,7 +29,7 @@ fi
 while getopts i:o:h opts
 do
     case "$opts" in
-        i) input=$OPTARG;;
+        i) fasta_input=$OPTARG;;
         o) output=$OPTARG;;
         h) usage
         exit 1;;
@@ -40,7 +40,7 @@ done
 parameters(){
     cat <<parameters
 Parameters:
-Input file = $input
+Input file = $fasta_input
 Output file = $output
 
 parameters
@@ -52,7 +52,7 @@ echo "Beginning of the script!"
 
 # Gene length calculation
 gene_length() {
-    cat $input | 
+    cat $fasta_input | 
     awk '/^>/ {if (seqlen){print seqlen};
         print; seqlen=0; next;}
         {seqlen += length($0)} 

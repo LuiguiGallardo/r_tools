@@ -5,7 +5,6 @@
 # Date: 14.08.2021
 
 # Usage and explanation of parameters:
-
 usage(){
     cat <<help
 Usage:
@@ -16,7 +15,6 @@ help
 }
 
 # Print the usage and help if no parameter is given
-
 if [ $# -eq 0 ]; then
     echo "No arguments provided"
     usage

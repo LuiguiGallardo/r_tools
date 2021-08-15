@@ -9,10 +9,10 @@
 usage () {
     cat <<help
 Usage:
-$0 {-i/--blast_input_fp BLAST_INPUT_FP -o/--output_prefix OUTPUT_PREFIX -g/--genome_info LENGTH_PER_GENE} [options]
+$0 {-i/--blast_input BLAST_INPUT_FP -o/--output_prefix OUTPUT_PREFIX -g/--genome_info LENGTH_PER_GENE} [options]
 
 Options:
--i,	--blast_input_fp	Input file obtained from blast in tabular format.
+-i,	--blast_input	Input file obtained from blast in tabular format.
 -o,	--output_prefix	Prefix for the output files.
 -g,	--genome_info	Genome information with gene name and length.
 -e,	--evalue	E-value cutoff; (default: 0.001).
@@ -39,8 +39,8 @@ minimum_coverage=0.50
 while getopts i:o:e:g:c:h opts
 do
     case "$opts" in
-        i) input=$OPTARG;;
-        o) output=$OPTARG;;
+        i) blast_input=$OPTARG;;
+        o) output_prefix=$OPTARG;;
         e) evalue=$OPTARG;;
         g) genome_info=$OPTARG;;
         c) minimum_coverage=$OPTARG;;
@@ -53,8 +53,8 @@ done
 parameters(){
     cat <<parameters
 Parameters:
-Input file = $input
-Output prefix = $output
+Input file = $blast_input
+Output prefix = $output_prefix
 Genome length = $genome_info
 E-value = $evalue
 Minimum coverage = $minimum_coverage
@@ -68,29 +68,29 @@ echo "Beginning of the script!"
 
 # 1. E-value filter
 evalue_filter() {
-    cat $input |
+    cat $blast_input |
     awk '{if ($11 <= '$evalue') {print}}' \
-    > $output\_e-$evalue.txt
+    > $output_prefix\_e-$evalue.txt
 }
 evalue_filter
 echo "Finished step 1: E-value filter"
 
 # 2. Convert to .bed
 convert_to_bed() {
-bash blast2bed.bash $output\_e-$evalue.txt > /dev/null # Covert .txt to .bed with blast2bed.bash (required to download)
-mv $output\_e-$evalue.txt.bed $output\_e-$evalue.bed # Change the name of .bed file
+bash blast2bed.bash $output_prefix\_e-$evalue.txt > /dev/null # Covert .txt to .bed with blast2bed.bash (required to download)
+mv $output_prefix\_e-$evalue.txt.bed $output_prefix\_e-$evalue.bed # Change the name of .bed file
 }
 convert_to_bed
 echo "Finished step 2: Convert to bed"
 
 # 3. Coverage of AMP > 50% of AMP
 coverage_filter() {
-bedtools genomecov -i $output\_e-$evalue.bed -g $genome_info |
+bedtools genomecov -i $output_prefix\_e-$evalue.bed -g $genome_info |
         grep -v genome | # Filter of no required information
         awk '$2 > 0 {print}' | # Zero filter
         awk '{coverage[$1] += $5} END {for (attribute in coverage) print attribute, coverage[attribute]}' | # Coverage calculation per attribute
         tr " " "\t" | # Covert spaces to tabs
-        awk '$2 > '$minimum_coverage' {print}' > $output\_e-$evalue\_cov-$minimum_coverage.txt # Print of results into final file
+        awk '$2 > '$minimum_coverage' {print}' > $output_prefix\_e-$evalue\_cov-$minimum_coverage.txt # Print of results into final file
 }
 coverage_filter
 echo "Finished step 3: Coverage filter"
