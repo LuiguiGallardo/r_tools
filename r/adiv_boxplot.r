@@ -1,7 +1,8 @@
 #!/usr/bin/env Rscript
-##Purpose of script: alpha diversity boxplot
-##Date created: 19.04.2021
-##Author: luigui gallardo-becerra (bfllg77@gmail.com)
+# Title: adiv_boxplot.r
+# Purpose of script: alpha diversity boxplot
+# Date created: 19.04.2021
+# Author: Luigui Gallardo-Becerra (bfllg77@gmail.com)
 
 #Installation of packages
 #install.packages('optparse')

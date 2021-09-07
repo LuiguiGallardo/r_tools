@@ -1,7 +1,8 @@
 #!/usr/bin/env Rscript
-##Purpose of script: taxonomy barplot
-##Date created: 17.04.2021
-##Author: luigui gallardo-becerra (bfllg77@gmail.com)
+# Title: taxa_barplot.r
+# Purpose of script: taxonomy barplot
+# Date created: 19.04.2021
+# Author: Luigui Gallardo-Becerra (bfllg77@gmail.com)
 
 #Installation of packages
 #install.packages('optparse')

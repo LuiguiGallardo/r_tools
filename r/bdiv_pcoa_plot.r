@@ -1,7 +1,8 @@
 #!/usr/bin/env Rscript
-##Purpose of script: beta diversity pcoa plot
-##Date created: 13.04.2021
-##Author: luigui gallardo-becerra (bfllg77@gmail.com)
+# Title: bdiv_pcoa_plot.r
+# Purpose of script: beta diversity PCoA
+# Date created: 19.04.2021
+# Author: Luigui Gallardo-Becerra (bfllg77@gmail.com)
 
 #Installation of packages
 #install.packages('optparse')

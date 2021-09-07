@@ -52,12 +52,18 @@ class Venn:
             if item1 in items2:
                 items1_2.append(item1)
         
+        # Creation of Venn Diagram 
         venn2_unweighted(subsets=(
             (len(items1)-len(items1_2)),
             (len(items2)-len(items1_2)),
             len(items1_2)),
             set_labels=(name_file1, name_file2))
         pyplot.savefig(self.figure)
+
+        # Creation of files
+        items1_2_file = open("shared_group1_group2.txt", "x")
+        items1_2_file.writelines(items1_2)
+        items1_2_file.close() 
 
     def venn3_svg(self):
         items1=list(self.file1)
@@ -72,21 +78,19 @@ class Venn:
             if item1 in items2:
                 items1_2.append(item1)
 
-
         for item1 in items1:
             if item1 in items3:
                 items1_3.append(item1)
-
 
         for item2 in items2:
             if item2 in items3:
                 items2_3.append(item2)
 
-
         for item1_2 in items1_2:
             if item1_2 in items3:
                 items1_2_3.append(item1_2)
 
+        # Creation of Venn Diagram
         venn3_unweighted(subsets=(
             (len(items1)-len(items1_2)-len(items1_3)+len(items1_2_3)),
             (len(items2)-len(items1_2)-len(items2_3)+len(items1_2_3)),
@@ -97,7 +101,27 @@ class Venn:
             len(items1_2_3)),
             set_labels=(name_file1, name_file2, name_file3))
         pyplot.savefig(self.figure)
-   
+
+        # Creation of files
+        items1_2_file = open("shared_group1_group2.txt", "x")
+        items1_2_file.writelines(items1_2)
+        items1_2_file.close()
+
+        items1_3_file = open("shared_group1_group3.txt", "x")
+        items1_3_file.writelines(items1_3)
+        items1_3_file.close()
+
+        items2_3_file = open("shared_group2_group3.txt", "x")
+        items2_3_file.writelines(items2_3)
+        items2_3_file.close()
+
+        items1_2_3_file = open("shared_allgroups.txt", "x")
+        items1_2_3_file.writelines(items1_2_3)
+        items1_2_3_file.close()
+
+        
+
+
 if args.input3 != None:
     name_file1=str(args.input1.name).replace(".txt", "")
     name_file2=str(args.input2.name).replace(".txt", "")
