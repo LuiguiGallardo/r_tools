@@ -62,6 +62,7 @@ feature_count(){
     sed 's/^ *//g ; s/ /\t/g' |
     awk  '{print $2 "\t" $1}' >> $output_prefix.txt
 }
+feature_count
 
 # The end!
 echo "End of the script!"
