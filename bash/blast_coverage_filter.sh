@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 # Title: blast_coverage_filter
 # Purpose: Calculate and filter a feature from a blast output
 # Author: Luigui Gallardo-Becerra (bfllg77@gmail.com)
@@ -29,7 +28,6 @@ if [ $# -eq 0 ]; then
     usage
     exit 1
 fi
-
 
 # Arguments input:
 # Defaults:
