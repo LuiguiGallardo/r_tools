@@ -25,16 +25,19 @@ parser.add_argument('-3', '--input3',
 parser.add_argument('-o', '--output',
     required=True,
     help="Output files prefix.")
+parser.add_argument('-t', '--title',
+    help="Title.")
 
 args=parser.parse_args()
 
 # Beginning of the script
 class Venn:
-    def __init__(self, file1, file2, figure, file3=None):
+    def __init__(self, file1, file2, figure, title, file3=None):
         self.file1=file1
         self.file2=file2
         self.file3=file3
         self.figure=figure
+        self.title=title
 
     def list(self, file):
         items=[]
@@ -58,6 +61,7 @@ class Venn:
             (len(items2)-len(items1_2)),
             len(items1_2)),
             set_labels=(name_file1, name_file2))
+        pyplot.title(self.title)
         pyplot.savefig(self.figure)
 
         # Creation of files
@@ -131,7 +135,7 @@ if args.input3 != None:
 else:
     name_file1=str(args.input1.name).replace(".txt", "")
     name_file2=str(args.input2.name).replace(".txt", "")
-    venn=Venn(args.input1, args.input2, args.output)
+    venn=Venn(args.input1, args.input2, args.output, args.title)
     venn.venn2_svg()
 
 # The end!
